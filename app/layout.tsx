@@ -1,7 +1,14 @@
+"use client"
+import { Navbar } from '@/components'
 import './globals.css'
-import { Inter } from 'next/font/google'
+import { Nunito_Sans } from 'next/font/google'
+import { ThemeProvider } from 'next-themes'
 
-const inter = Inter({ subsets: ['latin'] })
+const nunito_sans = Nunito_Sans({
+  weight: ['300', '600', '800'],
+  style: ['normal'],
+  subsets: ['latin'],
+})
 
 export const metadata = {
   title: 'Create Next App',
@@ -14,8 +21,13 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <html lang="en" className={nunito_sans.className}>
+      <body className={`antialiased min-h-screen bg-neutral-50 dark:bg-gray-800`}>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <Navbar />
+          {children}
+        </ThemeProvider >
+      </body>
     </html>
   )
 }
